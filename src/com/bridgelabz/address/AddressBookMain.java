@@ -4,9 +4,10 @@ import java.util.*;
 public class AddressBookMain {
 	
 	Scanner sc = new Scanner(System.in);
-	static ArrayList<Contacts> contactList;
-	HashMap<String,Contacts> contactMap;
-	private static Scanner i;
+	public ArrayList<Contacts> contactList;
+	public HashMap<String,Contacts> contactMap;
+	//HashMap<name,AddressBookMain> addressBookSystem = new HashMap<name,AddressBookMain>();
+	//private static Scanner i;
 	
 	public AddressBookMain()
 	{
@@ -103,53 +104,4 @@ public class AddressBookMain {
 			System.out.println("-----Name not found in Address Book-----");
 	}
 	
-	public static void main(String args[]) 
-	{
-		System.out.println("Welcome to Address Book Program!");
-		
-		AddressBookMain a = new AddressBookMain();
-		boolean flag =true;
-		while(flag)
-		{
-			System.out.println("Choose action on Address Book \n\n 1. Add Contact \n 2. Edit Contact \n 3. Delete Contact \n 4. Display Address Book \n 5. Exit \n");
-			i = new Scanner(System.in);
-			int choice = i.nextInt();
-			switch(choice)
-			{
-				case 1:
-					//Add contact
-					a.addContact();
-					break;
-				case 2:
-					//Edit contact
-					System.out.println("Enter first name of contact to be edited: ");
-					Scanner s= new Scanner(System.in);
-					String firstNameEdit = s.nextLine();
-					a.editContact(firstNameEdit);
-					break;
-				case 3:
-					//Delete Contact
-					System.out.println("Enter first name of contact to be deleted: ");
-					Scanner s1= new Scanner(System.in);
-					String firstNameDelete = s1.nextLine();
-					a.deleteContact(firstNameDelete);
-					break;
-				case 4:
-					//Display
-					for(int i=0;i<contactList.size();i++)
-					{
-						a.displayContact(i);
-					}
-					break;
-				case 5:
-					//Exit
-					System.out.println("-----Exiting from Address Book System-----");
-					flag = false;
-					break;
-					
-					
-			}
-		}
-	}
-
 }
