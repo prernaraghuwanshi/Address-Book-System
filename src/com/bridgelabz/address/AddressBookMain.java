@@ -6,6 +6,8 @@ public class AddressBookMain {
 	Scanner sc = new Scanner(System.in);
 	public ArrayList<Contacts> contactList;
 	public HashMap<String,Contacts> contactMap;
+	HashMap<String,ArrayList<String>> cityMap;
+	HashMap<String,ArrayList<String>> stateMap;
 	//HashMap<name,AddressBookMain> addressBookSystem = new HashMap<name,AddressBookMain>();
 	//private static Scanner i;
 	
@@ -13,6 +15,8 @@ public class AddressBookMain {
 	{
 		contactList = new ArrayList<Contacts>();
 		contactMap = new HashMap<String,Contacts>();
+		cityMap = new HashMap<String,ArrayList<String>>();
+		stateMap = new HashMap<String,ArrayList<String>>();
 	}
 	public boolean checkDuplicateName(String name)
 	{
@@ -59,6 +63,36 @@ public class AddressBookMain {
 		Contacts c = new Contacts(firstName, lastName, address, city, state, zip, phone, email);
 		contactList.add(c);
 		contactMap.put(firstName, c);
+		if(!cityMap.isEmpty() && cityMap.containsKey(city))
+		{
+			
+			ArrayList<String> nameList = cityMap.get(city);
+			nameList.add(firstName);
+			cityMap.replace(city, nameList);
+				
+		}
+		else
+		{
+			ArrayList<String> nameList = new ArrayList<String>();
+			nameList.add(firstName);
+			cityMap.put(city,nameList);
+		}
+		
+		if(!stateMap.isEmpty() && stateMap.containsKey(state))
+		{
+			
+			ArrayList<String> nameList = stateMap.get(state);
+			nameList.add(firstName);
+			stateMap.replace(state, nameList);
+				
+		}
+		else
+		{
+			ArrayList<String> nameList = new ArrayList<String>();
+			nameList.add(firstName);
+			stateMap.put(state,nameList);
+		}
+		
 		System.out.println("-----Contact Added Successfully-----");
 		System.out.println("Number of contacts in Address Book: " + contactList.size());
 	}
