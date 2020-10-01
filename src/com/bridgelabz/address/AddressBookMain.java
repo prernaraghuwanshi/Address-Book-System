@@ -14,11 +14,33 @@ public class AddressBookMain {
 		contactList = new ArrayList<Contacts>();
 		contactMap = new HashMap<String,Contacts>();
 	}
+	public boolean checkDuplicateName(String name)
+	{
+		Iterator itr = contactList.iterator();
+		if(!contactList.isEmpty())
+		{
+			while(itr.hasNext())
+			{
+				Contacts c = (Contacts) itr.next();
+				if(name.equals(c.firstName))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	public void addContact()
 	{
 		System.out.println("-----Add Contact Details-----");
 		System.out.println("Enter First Name: ");
 		String firstName = sc.nextLine();
+		boolean firstNameValid = checkDuplicateName(firstName);
+		if(firstNameValid == true)
+		{
+			System.out.println("First Name exists in address book!");
+			return;
+		}
 		System.out.println("Enter Last Name: ");
 		String lastName = sc.nextLine();
 		System.out.println("Enter Address: ");
