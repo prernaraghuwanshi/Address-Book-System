@@ -16,7 +16,7 @@ public class AddressBookMain {
 	}
 	public boolean checkDuplicateName(String name)
 	{
-		Iterator itr = contactList.iterator();
+		Iterator<Contacts> itr = contactList.iterator();
 		if(!contactList.isEmpty())
 		{
 			while(itr.hasNext())
